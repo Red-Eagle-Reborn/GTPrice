@@ -1,138 +1,199 @@
 <html>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <style type="text/css">
-  body {
-  	font-family: 'Raleway', sans-serif;
-  }
-  .navbar {
-  	background-color: #6780fc;
-  }
-  .navbar-toggler {
-  	width: 100%;
-  	height: 100%;
-  	background-color: transparent;
-  	border:0px;
-  	color: #ffffff;
-  	margin: 5px auto;
-  	font-size: 200%;
-  }
 
-  .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #000; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            body {
+                font-family: 'Raleway', sans-serif;
+            }
+            
+            .navbar-fixed-top {
+                background-color: #6780fc;
+            }
+            
+            .navbar-toggler {
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                border: 0px;
+                color: #ffffff;
+                margin: 5px auto;
+                font-size: 200%;
+            }
+            
+            .sidenav {
+                height: 100%;
+                /* 100% Full-height */
+                width: 0;
+                /* 0 width - change this with JavaScript */
+                position: fixed;
+                /* Stay in place */
+                z-index: 1;
+                /* Stay on top */
+                top: 0;
+                left: 0;
+                background-color: #000;
+                /* Black*/
+                overflow-x: hidden;
+                /* Disable horizontal scroll */
+                padding-top: 60px;
+                /* Place content 60px from the top */
+                transition: 0.5s;
+                /* 0.5 second transition effect to slide in the sidenav */
+            }
+            /* The navigation menu links */
+            
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s
+            }
+            /* When you mouse over the navigation links, change their color */
+            
+            .sidenav a:hover,
+            .offcanvas a:focus {
+                color: #f1f1f1;
+            }
+            /* Position and style the close button (top right corner) */
+            
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+            
+            .picture {
+                margin: auto;
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                display: block;
+            }
+            
+            .custom-btn {
+                display: block;
+                margin: auto;
+                background-color: transparent;
+                color: white;
+                border-color: #ffffff;
+            }
+            
+            .custom-btn:hover {
+                background-color: #ffffff;
+                color: black;
+                border-color: black;
+            }
+            
+            .custom-banner {
+                display: block;
+                margin: auto;
+                max-width: 100%;
+                max-height: 100%;
+            }
+            
+            .tablewell {
+                display: block;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+            /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+            
+            @media screen and (max-height: 450px) {
+                .sidenav {
+                    padding-top: 15px;
+                }
+                .sidenav a {
+                    font-size: 18px;
+                }
+            }
 
-/* The navigation menu links */
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-}
+        </style>
+        <script type="text/javascript">
+            function toggleNav() {
+                if (document.getElementById('sideNavbar')
+                    .style.width == '0px' || document.getElementById('sideNavbar')
+                    .style.width == 0) {
+                    openNav();
+                } else {
+                    closeNav();
+                }
+            }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
+            function openNav() {
+                document.getElementById("sideNavbar")
+                    .style.width = '250px';
+            }
 
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
+            function closeNav() {
+                document.getElementById("sideNavbar")
+                    .style.width = '0';
+            }
 
-.picture {
-	margin:auto;
-	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	display: block;
-}
-.custom-btn {
-	display: block;
-	margin: auto;
-	background-color: transparent;
-	color:white;
-	border-color: #ffffff;
-}
-.custom-btn:hover {
-	background-color: #ffffff;
-	color:black;
-	border-color: black;
-}
-.custom-banner {
-	display: block;
-	margin:auto;
-	max-width: 100%;
-    max-height: 100%;
-}
+        </script>
+        <title>GTPrice - Item Prices</title>
+    </head>
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
-  </style>
-  <script type="text/javascript">
-  function toggleNav() {
-  	if(document.getElementById('sideNavbar').style.width == '0px' || document.getElementById('sideNavbar').style.width == 0) {
-  		openNav();
-  	} else {
-  		closeNav();
-  	}
-  }
-  function openNav() {
-    document.getElementById("sideNavbar").style.width = '250px';
-}
-function closeNav() {
-    document.getElementById("sideNavbar").style.width = '0';
-}</script>
-<title>GTPrice - Item Prices</title>
-</head>
-
-<body>
-	<!--SideNav-->
-	<div id="sideNavbar" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <img src='images/profile.png' class='picture'>
-  <a>Welcome, Guest!</a>
-  <button type='button' class='btn custom-btn'>Log In</button><br>
-  <button type='button' class='btn custom-btn'>Register</button>
-</div>
-<!--EndSideNav-->
-<div class="navbar navbar-fixed-top navbar-default">
-<div class="container-fluid">
-
-      <div class="navbar-header">
-      	<button class="navbar-toggler" type="button" data-toggle="collapse" onclick='toggleNav();'>
-☰
-</button>
-      	<!--<a class="navbar-brand" style="color:white; cursor:pointer;">GTPrice</a>-->
-      </div>
-      <div class="navbar-collapse">
-      	<ul class="nav navbar-nav navbar-left">
-      		<li><a style='color:white;font-size:25px;cursor:pointer;'>GTPrice</a></li>
-      	</ul>
-      	<div>
-  </div>
-</div>
-</body>
+    <body>
+        <!--SideNav-->
+        <div id="sideNavbar" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img src='images/profile.png' class='picture'>
+            <a>Welcome, Guest!</a>
+            <button type='button' class='btn custom-btn'>Log In</button><br>
+            <button type='button' class='btn custom-btn'>Register</button>
+        </div>
+        <!--EndSideNav-->
+        <div class="navbar navbar-fixed-top navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" onclick='toggleNav();'>&#9776;</button>
+                    <!--<a class="navbar-brand" style="color:white; cursor:pointer;">GTPrice</a>-->
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a style='color:white;font-size:25px;cursor:pointer;'>GTPrice</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h1 align='center' style='color:#6780fc;margin-top:70px;'>GTPrice</h1>
+        <h4 align='center' style='color:#6780fc;'>Find Growtopia Item Price Here !</h4>
+        <br>
+        <div class='well tablewell'>
+            View : <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th-list"></span>
+              </button>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dirt</td>
+                        <td>9999999999/WL</td>
+                    </tr>
+                    <tr>
+                        <td>Rock</td>
+                        <td>500/WL</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>1000/WL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
 
 </html>
