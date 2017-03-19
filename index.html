@@ -1,177 +1,169 @@
+<!doctype html>
 <html>
 
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--MUI-->
+        <link href="http://cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://use.fontawesome.com/426e009a7d.js"></script>
+        <script src="http://cdn.muicss.com/mui-latest/js/mui.min.js"></script>
+
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <title>GTPrice</title>
         <style type="text/css">
+            /**
+ * Body CSS
+ */
+            
+            html,
             body {
+                height: 100%;
                 font-family: 'Raleway', sans-serif;
             }
             
-            .navbar-fixed-top {
-                background-color: #6780fc;
+            html,
+            body,
+            input,
+            textarea,
+            button {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
             }
+            /**
+ * Header CSS
+ */
             
-            .navbar-toggler {
-                width: 100%;
-                height: 100%;
-                background-color: transparent;
-                border: 0px;
-                color: #ffffff;
-                margin: 5px auto;
-                font-size: 200%;
-            }
-            
-            .sidenav {
-                height: 100%;
-                /* 100% Full-height */
-                width: 0;
-                /* 0 width - change this with JavaScript */
+            header {
                 position: fixed;
-                /* Stay in place */
-                z-index: 1;
-                /* Stay on top */
                 top: 0;
+                right: 0;
                 left: 0;
-                background-color: #000;
-                /* Black*/
-                overflow-x: hidden;
-                /* Disable horizontal scroll */
-                padding-top: 60px;
-                /* Place content 60px from the top */
-                transition: 0.5s;
-                /* 0.5 second transition effect to slide in the sidenav */
-            }
-            /* The navigation menu links */
-            
-            .sidenav a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 25px;
-                color: #818181;
-                display: block;
-                transition: 0.3s
-            }
-            /* When you mouse over the navigation links, change their color */
-            
-            .sidenav a:hover,
-            .offcanvas a:focus {
-                color: #f1f1f1;
-            }
-            /* Position and style the close button (top right corner) */
-            
-            .sidenav .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
+                z-index: 2;
             }
             
-            .picture {
-                margin: auto;
-                border-radius: 50%;
-                width: 100px;
-                height: 100px;
-                display: block;
+            header ul.mui-list--inline {
+                margin-bottom: 0;
             }
             
-            .custom-btn {
-                display: block;
-                margin: auto;
-                background-color: transparent;
+            header a {
                 color: white;
-                border-color: #ffffff;
+            }
+            /**
+ * Content CSS
+ */
+            
+            #content-wrapper1 {
+                min-height: 100%;
+                /* sticky footer */
+                margin-bottom: -10px;
+            }
+            /**
+ * Footer CSS
+ */
+            
+            footer {
+                height: 60px;
+                background-color: #eee;
+                border-top: 1px solid #e0e0e0;
+                padding-top: 35px;
             }
             
-            .custom-btn:hover {
-                background-color: #ffffff;
-                color: black;
-                border-color: black;
+            .custom-category {
+                display: none;
+                width: 400px;
+                height: 300px;
+                margin: 100px auto;
+                background-color: #fff;
             }
             
-            .custom-banner {
-                display: block;
-                margin: auto;
-                max-width: 100%;
-                max-height: 100%;
+            .c-pointer {
+                cursor: pointer;
+                color: #ffffff;
             }
             
-            .tablewell {
-                display: block;
-                margin-left: 10%;
-                margin-right: 10%;
-            }
-            /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-            
-            @media screen and (max-height: 450px) {
-                .sidenav {
-                    padding-top: 15px;
-                }
-                .sidenav a {
-                    font-size: 18px;
-                }
+            a:hover {
+                text-decoration: none;
             }
 
         </style>
         <script type="text/javascript">
-            function toggleNav() {
-                if (document.getElementById('sideNavbar')
-                    .style.width == '0px' || document.getElementById('sideNavbar')
-                    .style.width == 0) {
-                    openNav();
-                } else {
-                    closeNav();
-                }
-            }
+            var categoryItem = "ALL";
+            var categoryItem2 = "Hair"; //soon
 
-            function openNav() {
-                document.getElementById("sideNavbar")
-                    .style.width = '250px';
-            }
+            var lastToggle = '';
 
-            function closeNav() {
-                document.getElementById("sideNavbar")
-                    .style.width = '0';
+            $(function () {
+
+                $(".mui-btn--primary")
+                    .click(function () {
+                        if ($(this)
+                            .attr('class') == 'mui-btn mui-btn--primary') {
+                            categoryItem = $(this)
+                                .attr('value');
+                        } else {
+                            categoryItem = 'ALL';
+                        }
+                        $('#btnCatgeory')
+                            .val('Category : ' + categoryItem);
+                        $('#modalAbout')
+                            .modal('toggle');
+                        $(this)
+                            .toggleClass('mui-btn--primary mui-btn--danger');
+                        if (lastToggle != this) {
+                            $(lastToggle)
+                                .toggleClass('mui-btn--danger mui-btn--primary');
+                        }
+                        lastToggle = this;
+                    });
+
+            });
+
+
+
+            function changeStyle() {
+                $("#view")
+                    .toggleClass('fa-th-list fa-th');
             }
 
         </script>
-        <title>GTPrice - Item Prices</title>
     </head>
 
     <body>
-        <!--SideNav-->
-        <div id="sideNavbar" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <img src='images/profile.png' class='picture'>
-            <a>Welcome, Guest!</a>
-            <button type='button' class='btn custom-btn'>Log In</button><br>
-            <button type='button' class='btn custom-btn'>Register</button>
-        </div>
-        <!--EndSideNav-->
-        <div class="navbar navbar-fixed-top navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" onclick='toggleNav();'>&#9776;</button>
-                    <!--<a class="navbar-brand" style="color:white; cursor:pointer;">GTPrice</a>-->
-                </div>
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a style='color:white;font-size:25px;cursor:pointer;'>GTPrice</a></li>
-                    </ul>
-                </div>
+        <header class="mui-appbar mui--z1">
+            <div class="mui-container">
+                <table width="100%">
+                    <tr class="mui--appbar-height">
+                        <td class="mui--text-title">GTPrice</td>
+                        <td align="right">
+                            <ul class="mui-list--inline mui--text-body2">
+                                <li><a href="#" class='c-pointer' data-toggle="modal" data-target="#modalContact">Contact</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
             </div>
-        </div>
-        <h1 align='center' style='color:#6780fc;margin-top:70px;'>GTPrice</h1>
-        <h4 align='center' style='color:#6780fc;'>Find Growtopia Item Price Here !</h4>
-        <br>
-        <div class='well tablewell'>
-            View : <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-th-list"></span>
-              </button>
-            <table class="table table-condensed">
+        </header>
+        <div class='mui-container' id='content-wrapper1'>
+            <div class="mui--text-center">
+                <div class="mui--appbar-height"></div>
+                <br>
+                <br>
+                <div class="mui--text-display1">GTPrice</div>
+                <br>
+                <br>
+                <div class="mui--text-headline">Find Growtopia Item Prices Here !</div>
+            </div>
+            <!--table content-->
+            <button class="mui-btn" onclick="changeStyle();">View Style : <i class="fa fa-th-list" aria-hidden="true" id='view'></i>
+</button>
+            <input type='button' class='mui-btn' data-toggle="modal" data-target="#modalAbout" id='btnCatgeory' value='Category : ALL' />
+            <table class="mui-table mui-table--bordered">
                 <thead>
                     <tr>
                         <th>Item Name</th>
@@ -181,19 +173,151 @@
                 <tbody>
                     <tr>
                         <td>Dirt</td>
-                        <td>9999999999/WL</td>
-                    </tr>
-                    <tr>
-                        <td>Rock</td>
-                        <td>500/WL</td>
+                        <td>10wl</td>
                     </tr>
                     <tr>
                         <td>Lava</td>
-                        <td>1000/WL</td>
+                        <td>20wl</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>20wl</td>
+                    </tr>
+                    <tr>
+                        <td>Dirt</td>
+                        <td>10wl</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>20wl</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>20wl</td>
+                    </tr>
+                    <tr>
+                        <td>Dirt</td>
+                        <td>10wl</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>20wl</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>20wl</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <footer>
+            <div class="mui-container mui--text-center">
+                Developed by <a href="https://www.facebook.com/bte.svdex" target="_blank">Riezqu Ibnanta</a> and <a href="https://www.facebook.com/darius.redeagle" target='_blank'>Darius Ellert Klaus</a>
+            </div>
+        </footer>
+        <!--hidden popup modal-->
+        <div id="modalAbout" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Category</h4>
+                    </div>
+                    <div class="modal-body" align='center' style='overflow-y:auto'>
+
+                        <ul class="mui-tabs__bar mui-tabs__bar--justified">
+                            <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-events-1">Event</a></li>
+                            <li><a data-mui-toggle="tab" data-mui-controls="pane-events-2">Cloth</a></li>
+                            <li><a data-mui-toggle="tab" data-mui-controls="pane-events-3">Other</a></li>
+                        </ul>
+                        <div class="mui-tabs__pane mui--is-active" id="pane-events-1">
+                            <button class="mui-btn mui-btn--primary" value='Anniversary'>Anniversary</button>
+                            <button class="mui-btn mui-btn--primary" value='Valentine'>Valentine</button>
+                            <button class="mui-btn mui-btn--primary" value='St. Patrick'>St. Patrick</button>
+                            <button class="mui-btn mui-btn--primary" value='Easter'>Easter</button>
+                            <button class="mui-btn mui-btn--primary" value='Cinco de Mayo'>Cinco de Mayo</button>
+                            <button class="mui-btn mui-btn--primary" value='Super Pineapple'>Super Pineapple</button>
+                            <button class="mui-btn mui-btn--primary" value='Summerfest'>SummerFest</button>
+                            <button class="mui-btn mui-btn--primary" value='Player Appreciation'>Player Appreciation</button>
+                            <button class="mui-btn mui-btn--primary" value='Harvest Festival'>Harvest Festival</button>
+                            <button class="mui-btn mui-btn--primary" value='Halloween'>Halloween</button>
+                            <button class="mui-btn mui-btn--primary" value='WinterFest'>WinterFest</button>
+
+                        </div>
+                        <div class="mui-tabs__pane" id="pane-events-2">
+                            <button class="mui-btn mui-btn--primary" value='Hair'>Hair</button>
+                        </div>
+                        <div class="mui-tabs__pane" id="pane-events-3">
+                            <button class="mui-btn mui-btn--primary" value='Block'>Block</button>
+                            <button class="mui-btn mui-btn--primary" value='Seed'>Seed</button><br>
+                            <button class="mui-btn mui-btn--primary" value='Carnival'>Carnival</button>
+                            <button class="mui-btn mui-btn--primary" value='Comet'>Night Of The Comet</button>
+                            <button class="mui-btn mui-btn--primary" value='Locke'>Locke</button>
+                        </div>
+                        <script>
+                            // get toggle elements
+                            var toggleEls = document.querySelectorAll('[data-mui-controls^="pane-events-"]');
+
+                            function logFn(ev) {
+                                var s = '[' + ev.type + ']';
+                                s += ' paneId: ' + ev.paneId;
+                                s += ' relatedPaneId: ' + ev.relatedPaneId;
+                                console.log(s);
+                            }
+
+                            // attach event handlers
+                            for (var i = 0; i < toggleEls.length; i++) {
+                                toggleEls[i].addEventListener('mui.tabs.showstart', logFn);
+                                toggleEls[i].addEventListener('mui.tabs.showend', logFn);
+                                toggleEls[i].addEventListener('mui.tabs.hidestart', logFn);
+                                toggleEls[i].addEventListener('mui.tabs.hideend', logFn);
+                            }
+
+                        </script>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--contact-->
+        <div id="modalContact" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Send Message</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="mui-form">
+                            <div class="mui-textfield mui-textfield--float-label">
+                                <input type="text" style='width:200px;' required>
+                                <label>Name</label>
+                                <div class="mui-textfield mui-textfield--float-label">
+                                    <input type="text" style='width:200px;' required>
+                                    <label>Email</label>
+                                    <div class="mui-textfield">
+                                        <textarea placeholder="Message" required></textarea>
+                                    </div>
+                                </div>
+                        </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="mui-btn mui-btn--accent" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
     </body>
 
 </html>
