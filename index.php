@@ -171,42 +171,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Dirt</td>
-                        <td>10wl</td>
-                    </tr>
-                    <tr>
-                        <td>Lava</td>
-                        <td>20wl</td>
-                    </tr>
-                    <tr>
-                        <td>Lava</td>
-                        <td>20wl</td>
-                    </tr>
-                    <tr>
-                        <td>Dirt</td>
-                        <td>10wl</td>
-                    </tr>
-                    <tr>
-                        <td>Lava</td>
-                        <td>20wl</td>
-                    </tr>
-                    <tr>
-                        <td>Lava</td>
-                        <td>20wl</td>
-                    </tr>
-                    <tr>
-                        <td>Dirt</td>
-                        <td>10wl</td>
-                    </tr>
-                    <tr>
-                        <td>Lava</td>
-                        <td>20wl</td>
-                    </tr>
-                    <tr>
-                        <td>Lava</td>
-                        <td>20wl</td>
-                    </tr>
+                    <?php
+                        $ip = "localhost";
+                        $user = "root";
+                        $password = "";
+                        $dbName = "item";
+
+                        $conn = mysqli_connect($ip,$user,$password,$dbName);
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $q = "SELECT * FROM itemList";
+                        if(isset($_GET['category'])) {
+                            $q = "SELECT * FROM itemList WHERE category='" . $_GET['category'] . "'";
+                        }
+                        $runQuery = mysqli_query($conn,$q);
+                        if(mysqli_num_rows($runQuery) > 0) {
+                            while ($r = mysqli_fetch_assoc($runQuery)) {
+                                echo "<tr>
+                                        <td>
+                                        " .
+                                            $r['name']
+                                          . 
+                                        "
+                                        </td>
+                                        <td>" .
+                                            $r['price'] . "
+                                        </td>
+                                      </tr>";
+                            }  
+                        } else {
+                                echo "0 results";
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -229,32 +226,22 @@
 
                         <ul class="mui-tabs__bar mui-tabs__bar--justified">
                             <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-events-1">Event</a></li>
-                            <li><a data-mui-toggle="tab" data-mui-controls="pane-events-2">Cloth</a></li>
-                            <li><a data-mui-toggle="tab" data-mui-controls="pane-events-3">Other</a></li>
+                            <li><a data-mui-toggle="tab" data-mui-controls="pane-events-2">Other</a></li>
                         </ul>
                         <div class="mui-tabs__pane mui--is-active" id="pane-events-1">
-                            <button class="mui-btn mui-btn--primary" value='Anniversary'>Anniversary</button>
-                            <button class="mui-btn mui-btn--primary" value='Valentine'>Valentine</button>
-                            <button class="mui-btn mui-btn--primary" value='St. Patrick'>St. Patrick</button>
-                            <button class="mui-btn mui-btn--primary" value='Easter'>Easter</button>
-                            <button class="mui-btn mui-btn--primary" value='Cinco de Mayo'>Cinco de Mayo</button>
-                            <button class="mui-btn mui-btn--primary" value='Super Pineapple'>Super Pineapple</button>
-                            <button class="mui-btn mui-btn--primary" value='Summerfest'>SummerFest</button>
-                            <button class="mui-btn mui-btn--primary" value='Player Appreciation'>Player Appreciation</button>
-                            <button class="mui-btn mui-btn--primary" value='Harvest Festival'>Harvest Festival</button>
-                            <button class="mui-btn mui-btn--primary" value='Halloween'>Halloween</button>
-                            <button class="mui-btn mui-btn--primary" value='WinterFest'>WinterFest</button>
+                            <a href="index.php?category=Anniversary" class="mui-btn mui-btn--primary" value='Anniversary'>Anniversary</a>
+                            <a href="index.php?category=Valentine" class="mui-btn mui-btn--primary" value='Valentine'>Valentine</a>
+                            <a href="index.php?category=St Patrick" class="mui-btn mui-btn--primary" value='St. Patrick'>St. Patrick</a>
+                            <a href="index.php?category=Easter Egg" class="mui-btn mui-btn--primary" value='Easter Egg'>Easter Egg</a>
+                            <a href="index.php?category=Cinco de Mayo" class="mui-btn mui-btn--primary" value='Cinco de Mayo'>Cinco de Mayo</a>
+                            <a href="index.php?category=SummerFest" class="mui-btn mui-btn--primary" value='Summerfest'>SummerFest</a>
 
                         </div>
                         <div class="mui-tabs__pane" id="pane-events-2">
-                            <button class="mui-btn mui-btn--primary" value='Hair'>Hair</button>
-                        </div>
-                        <div class="mui-tabs__pane" id="pane-events-3">
-                            <button class="mui-btn mui-btn--primary" value='Block'>Block</button>
-                            <button class="mui-btn mui-btn--primary" value='Seed'>Seed</button><br>
-                            <button class="mui-btn mui-btn--primary" value='Carnival'>Carnival</button>
-                            <button class="mui-btn mui-btn--primary" value='Comet'>Night Of The Comet</button>
-                            <button class="mui-btn mui-btn--primary" value='Locke'>Locke</button>
+                            <a href="index.php?category=Wings" class="mui-btn mui-btn--primary" value='Wings'>Wings</a>
+                            <a href="index.php?category=Pet" class="mui-btn mui-btn--primary" value='Pet'>Pet</a><br>
+                            <a href="index.php?category=Farmables" class="mui-btn mui-btn--primary" value='Farmables'>Farmables</a>
+                            <a href="index.php?category=Basic Seed" class="mui-btn mui-btn--primary" value='Basic Seed'>Basic Seed</a>
                         </div>
                         <script>
                             // get toggle elements
